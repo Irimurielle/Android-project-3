@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "600358824248",
+    "project_id": "foodrecipes-26",
+    "storage_bucket": "foodrecipes-26.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600358824248:android:5777a3778104a816dcb9cd",
+        "android_client_info": {
+          "package_name": "com.irimurielle.foodrecipes2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600358824248-3es6gidi2u5mm02u8005ag34bor9gug2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.irimurielle.foodrecipes2",
+            "certificate_hash": "4909cedb79cf0c206abda52d4aa6c82153067af5"
+          }
+        },
+        {
+          "client_id": "600358824248-sr8kgp5e5d38b0of8ha7f1r5juk9g3vb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsq1DvSLey47MTWd6fg4C_Ixlj-wTEU20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600358824248-sr8kgp5e5d38b0of8ha7f1r5juk9g3vb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
