@@ -43,7 +43,7 @@ public class CategoryFragment extends Fragment implements CategoryView {
     ImageView imageCategoryBg;
     @BindView(R.id.textCategory)
     TextView textCategory;
-    
+
     AlertDialog.Builder descDialog;
 
     @Override
@@ -69,7 +69,7 @@ public class CategoryFragment extends Fragment implements CategoryView {
             descDialog = new AlertDialog.Builder(getActivity())
                     .setTitle(getArguments().getString("EXTRA_DATA_NAME"))
                     .setMessage(getArguments().getString("EXTRA_DATA_DESC"));
-            
+
             CategoryPresenter presenter = new CategoryPresenter(this);
             presenter.getMealByCategory(getArguments().getString("EXTRA_DATA_NAME"));
         }
@@ -87,13 +87,13 @@ public class CategoryFragment extends Fragment implements CategoryView {
 
     @Override
     public void setMeals(List<Meals.Meal> meals) {
-        RecyclerViewMealByCategory adapter = 
+        RecyclerViewMealByCategory adapter =
                 new RecyclerViewMealByCategory(getActivity(), meals);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerView.setClipToPadding(false);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        
+
         adapter.setOnItemClickListener((view, position) -> {
             TextView mealName = view.findViewById(R.id.mealName);
             Intent intent = new Intent(getActivity(), DetailActivity.class);
@@ -106,11 +106,15 @@ public class CategoryFragment extends Fragment implements CategoryView {
     public void onErrorLoading(String message) {
         Utils.showDialogMessage(getActivity(), "Error ", message);
     }
-    
+
     @OnClick(R.id.cardCategory)
     public void onClick() {
         descDialog.setPositiveButton("CLOSE", (dialog, which) -> dialog.dismiss());
         descDialog.show();
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }
