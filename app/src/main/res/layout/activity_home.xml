@@ -47,16 +47,13 @@
                 app:cardBackgroundColor="@color/purple_700"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp">
-                <TextView
+                <EditText
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:padding="10dp"
-                    android:text="@string/search_your_recipes"
+                    android:hint="@string/search"
                     android:textColor="@color/teal_700"
-                    android:gravity="center_vertical"
-                    android:drawableLeft="@drawable/ic_search_primary_light"
-                    android:drawableStart="@drawable/ic_search_primary_light"
-                    android:drawablePadding="10dp"/>
+                    android:gravity="center_vertical" />
             </androidx.cardview.widget.CardView>
 
             <androidx.viewpager.widget.ViewPager
