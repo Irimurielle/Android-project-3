@@ -4,10 +4,14 @@ Food recipes is an app that provides recipes for users using mealDB Api to be ab
 ## Author
 Murielle Iribori
 ## Demonstration
-![Home page](images/screenshot 1.png)
+![Home page](images/Screenshot 1.png)
+
 ![Category page](images/screenshot 2.png)
+
 ![Ingredients page](images/screenshot 3.png)
+
 ![Login page](images/Screenshot 4.png)
+
 ![SignUp page](images/Screenshot 5.png)
 
 ## Setup instruction
