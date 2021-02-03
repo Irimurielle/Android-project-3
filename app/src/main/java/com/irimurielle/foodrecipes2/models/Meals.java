@@ -172,6 +172,7 @@ public class Meals {
         @SerializedName("dateModified")
         @Expose
         private Object dateModified;
+        private String pushId;
 
         public String getIdMeal() {
             return idMeal;
@@ -579,6 +580,14 @@ public class Meals {
 
         public void setDateModified(Object dateModified) {
             this.dateModified = dateModified;
+        }
+
+        public String getPushId() {
+            return pushId;
+        }
+
+        public void setPushId(String pushId) {
+            this.pushId = pushId;
         }
 
     }
