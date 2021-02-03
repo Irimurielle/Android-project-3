@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -17,6 +18,8 @@ import androidx.core.view.ViewCompat;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.irimurielle.foodrecipes2.R;
 import com.irimurielle.foodrecipes2.Utils;
 import com.irimurielle.foodrecipes2.models.Meals;
@@ -27,7 +30,7 @@ import butterknife.ButterKnife;
 
 import static com.irimurielle.foodrecipes2.ui.home.HomeActivity.EXTRA_DETAIL;
 
-public class DetailActivity extends AppCompatActivity implements DetailView{
+public class DetailActivity extends AppCompatActivity implements DetailView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -40,24 +43,25 @@ public class DetailActivity extends AppCompatActivity implements DetailView{
 
     @BindView(R.id.mealThumb)
     ImageView mealThumb;
-    
+
     @BindView(R.id.category)
     TextView category;
-    
 
-    
+    @BindView(R.id.savingButton)
+    Button mSavingButton;
+
     @BindView(R.id.instructions)
     TextView instructions;
 
     @BindView(R.id.ingredient)
     TextView ingredients;
-    
+
     @BindView(R.id.measure)
     TextView measures;
-    
+
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,13 +69,13 @@ public class DetailActivity extends AppCompatActivity implements DetailView{
         ButterKnife.bind(this);
 
         setupActionBar();
-        
+
         Intent intent = getIntent();
         String mealName = intent.getStringExtra(EXTRA_DETAIL);
 
         DetailPresenter presenter = new DetailPresenter(this);
         presenter.getMealById(mealName);
-        
+
     }
 
     private void setupActionBar() {
@@ -99,23 +103,6 @@ public class DetailActivity extends AppCompatActivity implements DetailView{
                         PorterDuff.Mode.SRC_ATOP);
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_detail, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home :
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     @Override
@@ -263,5 +250,13 @@ public class DetailActivity extends AppCompatActivity implements DetailView{
     @Override
     public void onErrorLoading(String message) {
         Utils.showDialogMessage(this, "Error", message);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == mSavingButton) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+        }
     }
 }
