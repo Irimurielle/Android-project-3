@@ -4,13 +4,12 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -25,6 +24,11 @@ import com.irimurielle.foodrecipes2.Utils;
 import com.irimurielle.foodrecipes2.models.Meals;
 import com.squareup.picasso.Picasso;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -32,6 +36,7 @@ import static com.irimurielle.foodrecipes2.ui.home.HomeActivity.EXTRA_DETAIL;
 
 public class DetailActivity extends AppCompatActivity implements DetailView {
 
+    private Meals mMeal;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -72,6 +77,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
         Intent intent = getIntent();
         String mealName = intent.getStringExtra(EXTRA_DETAIL);
+        mSavingButton.setOnClickListener(this);
 
         DetailPresenter presenter = new DetailPresenter(this);
         presenter.getMealById(mealName);
