@@ -36,7 +36,7 @@ import static com.irimurielle.foodrecipes2.ui.home.HomeActivity.EXTRA_DETAIL;
 
 public class DetailActivity extends AppCompatActivity implements DetailView {
 
-    private Meals mMeal;
+    private Meals.Meal mMeal;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -263,6 +263,12 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         if (v == mSavingButton) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
+            DatabaseReference mealRef = FirebaseDatabase.getInstance().getReference("Meals").child(uid);
+            DatabaseReference pushRef = mealRef.push();
+            String pushId = pushRef.getKey();
+            mMeal.setPushId(pushId);
+            pushRef.setValue(mMeal);
+            Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
     }
 }
