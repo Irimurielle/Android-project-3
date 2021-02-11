@@ -23,6 +23,7 @@ import com.irimurielle.foodrecipes2.models.Meals;
 import com.irimurielle.foodrecipes2.ui.detail.DetailActivity;
 import com.squareup.picasso.Picasso;
 
+import java.awt.font.NumericShaper;
 import java.util.List;
 
 import butterknife.BindView;
@@ -32,6 +33,9 @@ import butterknife.OnClick;
 import static com.irimurielle.foodrecipes2.ui.home.HomeActivity.EXTRA_DETAIL;
 
 public class CategoryFragment extends Fragment implements CategoryView {
+
+    private static final int REQUEST_IMAGE_CAPTURE = 111;
+    private static final int CAMERA_PERMISSION_REQUEST_CODE = 11;
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -45,6 +49,8 @@ public class CategoryFragment extends Fragment implements CategoryView {
     TextView textCategory;
 
     AlertDialog.Builder descDialog;
+    private ImageView mImageLabel;
+    private NumericShaper mSource;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -73,6 +79,9 @@ public class CategoryFragment extends Fragment implements CategoryView {
             CategoryPresenter presenter = new CategoryPresenter(this);
             presenter.getMealByCategory(getArguments().getString("EXTRA_DATA_NAME"));
         }
+
+        setHasOptionsMenu(true);
+
     }
 
     @Override
