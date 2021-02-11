@@ -1,5 +1,7 @@
 package com.irimurielle.foodrecipes2.adapters;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.irimurielle.foodrecipes2.R;
 import com.irimurielle.foodrecipes2.models.Meals;
+import com.irimurielle.foodrecipes2.ui.ItemTouchHelperViewHolder;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -19,11 +22,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RecyclerViewMealByCategory extends RecyclerView.Adapter<com.irimurielle.foodrecipes2.adapters.RecyclerViewMealByCategory.RecyclerViewHolder> {
+public class RecyclerViewMealByCategory extends RecyclerView.Adapter<com.irimurielle.foodrecipes2.adapters.RecyclerViewMealByCategory.RecyclerViewHolder> implements ItemTouchHelperViewHolder {
 
     private List<Meals.Meal> meals;
     private Context context;
     private static ClickListener clickListener;
+    private Context mContext;
+    Object itemView;
 
     public RecyclerViewMealByCategory(Context context, List<Meals.Meal> meals) {
         this.meals = meals;
@@ -52,6 +57,22 @@ public class RecyclerViewMealByCategory extends RecyclerView.Adapter<com.irimuri
     @Override
     public int getItemCount() {
         return meals.size();
+    }
+
+    @Override
+    public void onItemSelected() {
+        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(mContext,
+                R.animator.drag_scale_on);
+        set.setTarget(itemView);
+        set.start();
+    }
+
+    @Override
+    public void onItemClear() {
+        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(mContext,
+                R.animator.drag_scale_off);
+        set.setTarget(itemView);
+        set.start();
     }
 
     static class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
